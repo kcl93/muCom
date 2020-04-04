@@ -45,16 +45,6 @@ Byte	Bit(s)	Function
 */
 
 
-#define MUCOM_DEFAULT_TIMEOUT		100
-
-#define MUCOM_HEADER_BIT_MASK		0x80
-#define MUCOM_FRAME_DESC_MASK		0x60
-#define MUCOM_DATA_BYTE_CNT_MASK	0x1C
-#define MUCOM_READ_RESPONSE			0x00
-#define MUCOM_READ_REQUEST			0x20
-#define MUCOM_WRITE_REQUEST			0x40
-#define MUCOM_EXECUTE_REQUEST		0x60
-
 
 
 muCom::muCom(Stream &ser, uint8_t num_var, uint8_t num_func)
@@ -170,7 +160,7 @@ uint8_t muCom::handle(void)
 					//Check index, whether a variable is linked and whether the read size is not greater than the linked variable size
 					if((this->_rcv_buf[0] <= this->_linked_var_num) && (this->_linked_var[this->_rcv_buf[0]].addr != NULL) && (dataCnt <= this->_linked_var[this->_rcv_buf[0]].size))
 					{
-						this->writeRaw(MUCOM_READ_RESPONSE, this->_linked_var[this->_rcv_buf[0]].addr, this->_linked_var[this->_rcv_buf[0]].size);
+						this->writeRaw(MUCOM_READ_RESPONSE, this->_rcv_buf[0], this->_linked_var[this->_rcv_buf[0]].addr, this->_linked_var[this->_rcv_buf[0]].size);
 					}
 					break;
 					
@@ -236,22 +226,24 @@ int8_t muCom::linkVariable(uint8_t index, uint8_t *var, uint8_t size)
 
 
 
-void muCom::writeRaw(uint8_t frameDesc, uint8_t *data, uint8_t size)
+void muCom::writeRaw(uint8_t frameDesc, uint8_t index, uint8_t *data, uint8_t size)
 {
 	uint8_t buf[11];
 	int8_t data_pos, byte_pos, payload_pos;
 	
-	if(size > 8)
+	size--;
+	if(size > 7)
 	{
-		size = 8;
+		size = 7;
 	}
 	
 	//Create first bytes with header and variable index
-	buf[0] = MUCOM_HEADER_BIT_MASK + frameDesc + ((size - 1) << 2);
+	buf[0] = MUCOM_HEADER_BIT_MASK + frameDesc + (size << 2) + (index >> 6);
+	buf[1] = (index >> 2) & 0x7E;
 	
 	//Fill payload with data bytes
 	payload_pos = 0;
-	byte_pos = 1;
+	byte_pos = 0;
 	for(data_pos = 0; data_pos <= size; data_pos++)
 	{
 		if(byte_pos < 0)
@@ -266,16 +258,6 @@ void muCom::writeRaw(uint8_t frameDesc, uint8_t *data, uint8_t size)
 	}
 	
 	this->_ser->write(buf, payload_pos + 1); //Send write variable request to slave
-}
-
-
-
-void muCom::write(uint8_t index, uint8_t *data, uint8_t size)
-{
-	uint8_t buf[11];
-	buf[0] = index;
-	memcpy(&buf[1], data, size);
-	this->writeRaw(MUCOM_WRITE_REQUEST, data, size);
 }
 
 

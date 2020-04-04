@@ -17,6 +17,16 @@
 #define MUCOM_ERR_TIMEOUT	-2
 #define MUCOM_ERR_COMM		-3
 
+#define MUCOM_DEFAULT_TIMEOUT		100
+
+#define MUCOM_HEADER_BIT_MASK		0x80
+#define MUCOM_FRAME_DESC_MASK		0x60
+#define MUCOM_DATA_BYTE_CNT_MASK	0x1C
+#define MUCOM_READ_RESPONSE			0x00
+#define MUCOM_READ_REQUEST			0x20
+#define MUCOM_WRITE_REQUEST			0x40
+#define MUCOM_EXECUTE_REQUEST		0x60
+
 
 typedef void (*muComFunc)(uint8_t *data, uint8_t cnt);
 
@@ -41,7 +51,7 @@ class muCom
 		uint8_t _rcv_buf_cnt;
 		int16_t _timeout;
 	
-		void writeRaw(uint8_t frameDesc, uint8_t *data, uint8_t cnt);
+		void writeRaw(uint8_t frameDesc, uint8_t index, uint8_t *data, uint8_t cnt);
 		
 		
 	public:
@@ -79,7 +89,8 @@ class muCom
 		
 
 		
-		void write(uint8_t index, uint8_t *data, uint8_t cnt);
+		void write(uint8_t index, uint8_t *data, uint8_t cnt)
+			{	this->writeRaw(MUCOM_WRITE_REQUEST, index, data, cnt);	}
 		
 		inline void writeByte(uint8_t index, uint8_t data)
 			{	this->write(index, &data, 1);	}
