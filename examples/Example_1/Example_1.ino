@@ -1,38 +1,54 @@
 #include "muCom.h"
 
 
-muCom Device(Serial, 10, 10);
-int time;
-int diff;
+//Function headers
+void setLED(uint8_t *data, uint8_t cnt);
+
+
+//Create muCom interface
+muCom Device(Serial, 2, 1);
+
+
+//Global variables
+//Both will be linked to the muCom interface and can be accessed from the communication partner
+int   InputA_LSB = 0;
+float InputA_Voltage = 0;
 
 
 void setup()
 {
-  Serial.begin(250000);
+  //Set LED pin to output
+  pinMode(LED_BUILTIN, OUTPUT);
 
-  diff = micros();
-  diff = micros() - diff;
+  //Link variables and functions
+  Device.linkVariable(0, &InputA_LSB);
+  Device.linkVariable(1, &InputA_Voltage);
+  Device.linkFunction(0, setLED);
+
+  //Enable serial interface
+  Serial.begin(115200);
 }
 
 
 void loop()
 {
-  time = micros();
-  Device.writeLong(5, 0x12345678);
-  time = micros() - time - diff;
-  delay(1000);
-  Serial.println();
-  Serial.println(time);
-  Serial.println();
-  delay(1000);
-  time = micros();
-  Serial.print(5);
-  Serial.print(",");
-  Serial.println(0x12345678);
-  time = micros() - time - diff;
-  delay(1000);
-  Serial.println();
-  Serial.println(time);
-  Serial.println();
-  delay(1000);
+  //Sample pin and calculate voltage in mV
+  InputA_LSB = analogRead(A0);
+  InputA_Voltage = (float)InputA_LSB * 5.0 / 1024.0;
+
+  //Print input voltage from the other communication partner
+  Serial.print(Device.readFloat(3));
+  Serial.println("mV");
+  
+  //Handle muCom interface
+  Device.handle();
+}
+
+
+void setLED(uint8_t *data, uint8_t cnt)
+{
+  if(cnt == 1)
+  {
+    digitalWrite(LED_BUILTIN, data[0]);
+  }
 }
