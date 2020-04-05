@@ -13,7 +13,8 @@ The muCom protocol does not define master or slave ECUs. Both act as equal partn
 
 
 ##### Benchmark results #####
-
+| Function | Execution time in us |
+| --- | --- |
 | writeByte():      | 42 |
 | writeShort():     | 62 |
 | writeLong():      | 99 |
