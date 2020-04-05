@@ -1,6 +1,5 @@
 /**
-	\brief		
-	\details	
+	\brief		File containing the main class for the muCom interface when being used for an Arduino
 	\version	1.0
 	\author		Kai Liebich
 */
@@ -13,7 +12,12 @@
 #include "muComBase.h"
 
 
-
+/**
+	\brief		Main class for the muCom interface when being used for an Arduino
+	\details	This class inherits all functions from the muCom base class (see muComBase)
+				and additionally implements the interface for the HW access when using the muCom interface on an Arduino.
+				It uses the Stream class for communication which can be implemented by the hardware and software UARTS, as well as USB serial emulations.
+*/
 class muCom : public muComBase
 {
 	private:

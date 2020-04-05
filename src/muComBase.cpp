@@ -1,10 +1,8 @@
-
-
 #include "muComBase.h"
 
 
 /*
-#####Frame structure####
+##### Frame structure #####
 Byte	Bit(s)	Function
 0		7		Start of frame indicator (must be '1')
 0		6-5		Frame description
