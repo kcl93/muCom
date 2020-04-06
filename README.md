@@ -32,4 +32,4 @@ Executed on an Atmega328p with a 250000kBaud serial interface in loopback mode.
 
 ##### Frame structure #####
 
-See muComBase.h for details regarding the binary structure of muCom frames.
+See muComBase.cpp for details regarding the binary structure of muCom frames.
