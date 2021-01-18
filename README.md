@@ -15,17 +15,17 @@ The muCom protocol does not define master or slave ECUs. Both act as equal partn
 ##### Benchmark results #####
 | Function | Execution time in us |
 | --- | --- |
-| writeByte()      | 42 |
-| writeShort()     | 62 |
-| writeLong()      | 99 |
-| writeLongLong()  | 165 |
-| writeFloat()     | 100 |
-| readByte()       | 312 |
-| readShort()      | 415 |
-| readLong()       | 533 |
-| readLongLong()   | 771 |
-| readFloat()      | 533 |
-| invokeFunction() | 41 |
+| writeByte()      | 35 |
+| writeShort()     | 55 |
+| writeLong()      | 92 |
+| writeLongLong()  | 156 |
+| writeFloat()     | 93 |
+| readByte()       | 255 |
+| readShort()      | 340 |
+| readLong()       | 458 |
+| readLongLong()   | 701 |
+| readFloat()      | 456 |
+| invokeFunction() | 40 |
 
 Executed on an Atmega328p with a 250000kBaud serial interface in loopback mode.
 

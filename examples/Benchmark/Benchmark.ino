@@ -3,7 +3,7 @@
 
 muCom Device(Serial, 6, 1);
 
-long timestamps[11] = {0}; //Timestamps for benchmark
+long timestamps[12] = {0}; //Timestamps for benchmark
 uint8_t u8Dummy = 0;
 uint16_t u16Dummy = 0;
 uint32_t u32Dummy = 0;
@@ -104,9 +104,12 @@ void setup()
   }
 
   //Calculate average benchmark result
+  tmpTime = micros();
+  __asm__("nop\n\t"); //Ensure that micros is actually stored in tmpTime
+  timestamps[11] = (int)micros() - tmpTime;
   for(i = 0; i < 11; i++)
   {
-    timestamps[i] = timestamps[i] / 100;
+    timestamps[i] = (timestamps[i] / 100) - timestamps[11];
   }
 
   digitalWrite(LED_BUILTIN, HIGH);

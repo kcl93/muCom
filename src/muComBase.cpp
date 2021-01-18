@@ -87,8 +87,8 @@ uint8_t muComBase::handle(void)
 	int8_t bytePos;
 	uint8_t dataPos;
 	uint8_t tmp;
-	uint8_t dataCnt;
-	uint8_t frameDesc;
+	static uint8_t dataCnt = 0;
+	static uint8_t frameDesc = 0;
 	
 	//Read all available data bytes
 	while(this->_available() != 0)
@@ -101,6 +101,11 @@ uint8_t muComBase::handle(void)
 			//Header received! Reset receive statemachine, e.g. data counter
 			this->_rcv_buf_cnt = 1;
 			this->_rcv_buf[0] = tmp;
+			
+			//Decode frame type and data count
+			frameDesc = this->_rcv_buf[0] & MUCOM_FRAME_DESC_MASK;
+			dataCnt = ((this->_rcv_buf[0] & MUCOM_DATA_BYTE_CNT_MASK) >> 2) + 1;
+			
 			continue;
 		}
 		
@@ -110,20 +115,15 @@ uint8_t muComBase::handle(void)
 			continue;
 		}
 		
-		if(this->_rcv_buf_cnt > 10)
-		{
-			//Buffer overflow! Invalid number of bytes received for the current frame! Reset statemachine...
-			this->_rcv_buf_cnt = 0;
-			continue;
-		}
-		
 		//Store data byte and calculate desired frame length
 		this->_rcv_buf[this->_rcv_buf_cnt] = tmp;
-		frameDesc = this->_rcv_buf[0] & MUCOM_FRAME_DESC_MASK;
-		dataCnt = (this->_rcv_buf[0] & MUCOM_DATA_BYTE_CNT_MASK) >> 2;
-		dataCnt++;
 		
-		if((frameDesc == MUCOM_READ_REQUEST) || ((dataCnt <= 1) && (this->_rcv_buf_cnt >= (dataCnt + 1))) || (this->_rcv_buf_cnt >= (dataCnt + 2)))
+		//Increase byte counter
+		this->_rcv_buf_cnt++;
+		
+		if((frameDesc == MUCOM_READ_REQUEST)
+			|| ((dataCnt <= 1) && (this->_rcv_buf_cnt >= dataCnt))
+			|| (this->_rcv_buf_cnt >= (dataCnt + 1)))
 		{
 			//Sufficient data received. Decode it and do stuff if required
 			
@@ -189,9 +189,6 @@ uint8_t muComBase::handle(void)
 			
 			continue;
 		}
-		
-		//Increase data byte counter
-		this->_rcv_buf_cnt++;
 	}
 	
 	return 0;
@@ -267,7 +264,7 @@ void muComBase::writeRaw(uint8_t frameDesc, uint8_t index, uint8_t *data, uint8_
 
 int8_t muComBase::read(uint8_t index, uint8_t *data, uint8_t size)
 {
-	uint8_t buf[11];
+	uint8_t buf[2];
 	int16_t time_start;
 	
 	if((size == 0) || (size > 8))
@@ -277,7 +274,7 @@ int8_t muComBase::read(uint8_t index, uint8_t *data, uint8_t size)
 	
 	//Create first bytes with header and variable index
 	buf[0] = MUCOM_HEADER_BIT_MASK + MUCOM_READ_REQUEST + ((size - 1) << 2) + (index >> 6);
-	buf[1] = (index << 1) & 0x7F;
+	buf[1] = (index << 1) & 0x3F;
 	
 	//Flush receive buffer
 	this->handle();
@@ -292,7 +289,7 @@ int8_t muComBase::read(uint8_t index, uint8_t *data, uint8_t size)
 	time_start = this->_getTimestamp();
 	while(handle() == 0)
 	{
-		if((this->_getTimestamp() - time_start) >= _timeout)
+		if(((int16_t)this->_getTimestamp() - time_start) >= _timeout)
 		{
 			return MUCOM_ERR_TIMEOUT; //Timeout
 		}

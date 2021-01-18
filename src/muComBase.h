@@ -13,6 +13,8 @@
 #include <stdint.h>
 #include "stdlib.h"
 
+#pragma GCC optimize ("O2") //Roughly 4% more speed for 2% more flash usage compared to default "Os"
+
 
 //Defines for the return values of the muCom interface functions
 #define MUCOM_OK			0	//!< OK. No error.
@@ -63,7 +65,7 @@ class muComBase
 		uint8_t _rcv_buf[11];							//Internal receive buffer
 		uint8_t _rcv_buf_cnt;							//Number of valid bytes in the internal receive buffer (serves as statemachine)
 		int16_t _timeout;								//Current timeout for read requests
-		int16_t _lastCommTime;							//Timestamp of last successful communication
+		uint32_t _lastCommTime;							//Timestamp of last successful communication
 		
 		//Write a raw muCom frame
 		void writeRaw(uint8_t frameDesc, uint8_t index, uint8_t *data, uint8_t cnt);
@@ -81,7 +83,7 @@ class muComBase
 		virtual void _flushTx(void) = 0;
 		
 		//Internal function to get the current timestamp in ms
-		virtual int16_t _getTimestamp(void) = 0;
+		virtual uint32_t _getTimestamp(void) = 0;
 		
 		
 	public:
@@ -101,10 +103,10 @@ class muComBase
 		
 		/**
 			\brief	Get timestamp of last successful communication
-			\return	Timestamp in ms
+			\return	Timestamp
 		*/
-		inline int16_t getLastCommTime(void)
-			{	return (this->_getTimestamp() - this->_lastCommTime);	}
+		inline uint32_t getLastCommTime(void)
+			{	return this->_lastCommTime;	}
 
 
 		/**

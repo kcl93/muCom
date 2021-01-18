@@ -35,7 +35,7 @@ class muCom : public muComBase
 		inline void _flushTx(void)
 			{	this->_ser->flush();	}
 		
-		inline int16_t _getTimestamp(void)
+		inline uint32_t _getTimestamp(void)
 			{	return millis();	}
 		
 		
