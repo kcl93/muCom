@@ -16,6 +16,7 @@ muComBase	KEYWORD1
 setTimeout	KEYWORD2
 handle	KEYWORD2
 available	KEYWORD2
+getLastCommTime	KEYWORD2
 linkVariable	KEYWORD2
 linkFunction	KEYWORD2
 write	KEYWORD2
