@@ -139,35 +139,36 @@ class muComBase
 			\param[in]	index	Index used to access the variable/buffer
 			\param[in]	var		Pointer to the variable or buffer to be linked to the interface
 			\param[in]	size	Size of the variable/buffer in bytes (only neccessary when linking buffers)
+			\return		MUCOM_OK if all is alright
 		*/
 		int8_t linkVariable(uint8_t index, uint8_t *var, uint8_t size);
 		
-		inline void linkVariable(uint8_t index, uint8_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(uint8_t));	}
+		inline int8_t linkVariable(uint8_t index, uint8_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint8_t));	}
 			
-		inline void linkVariable(uint8_t index, int8_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(int8_t));	}
+		inline int8_t linkVariable(uint8_t index, int8_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int8_t));	}
 		
-		inline void linkVariable(uint8_t index, uint16_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(uint16_t));	}
+		inline int8_t linkVariable(uint8_t index, uint16_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint16_t));	}
 		
-		inline void linkVariable(uint8_t index, int16_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(int16_t));	}
+		inline int8_t linkVariable(uint8_t index, int16_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int16_t));	}
 		
-		inline void linkVariable(uint8_t index, uint32_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(uint32_t));	}
+		inline int8_t linkVariable(uint8_t index, uint32_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint32_t));	}
 		
-		inline void linkVariable(uint8_t index, int32_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(int32_t));	}
+		inline int8_t linkVariable(uint8_t index, int32_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int32_t));	}
 		
-		inline void linkVariable(uint8_t index, uint64_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(uint64_t));	}
+		inline int8_t linkVariable(uint8_t index, uint64_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint64_t));	}
 		
-		inline void linkVariable(uint8_t index, int64_t *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(int64_t));	}
+		inline int8_t linkVariable(uint8_t index, int64_t *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int64_t));	}
 		
-		inline void linkVariable(uint8_t index, float *var)
-			{	this->linkVariable(index, (uint8_t*)var, sizeof(float));	}
+		inline int8_t linkVariable(uint8_t index, float *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(float));	}
 		
 		
 		/**
