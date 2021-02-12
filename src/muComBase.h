@@ -11,7 +11,6 @@
 
 //Required includes
 #include <stdint.h>
-#include "stdlib.h"
 
 #pragma GCC optimize ("O2") //Roughly 4% more speed for 2% more flash usage compared to default "Os"
 

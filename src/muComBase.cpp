@@ -1,5 +1,6 @@
 #include "muComBase.h"
-
+#include <stdlib.h>
+#include <string.h>
 
 /*
 ##### Frame structure #####
@@ -168,10 +169,7 @@ uint8_t muComBase::handle(void)
 					if((this->_rcv_buf[0] < this->_linked_var_num) && (this->_linked_var[this->_rcv_buf[0]].addr != NULL) && (dataCnt <= this->_linked_var[this->_rcv_buf[0]].size))
 					{
 						this->_disableInterrupts();
-						for(tmp = 0; tmp < dataCnt; tmp++)
-						{
-							this->_linked_var[this->_rcv_buf[0]].addr[tmp] = this->_rcv_buf[tmp + 1];
-						}
+						memcpy(this->_linked_var[this->_rcv_buf[0]].addr, this->_rcv_buf + 1, dataCnt);
 						this->_enableInterrupts();
 					}
 					break;
