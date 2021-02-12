@@ -122,8 +122,8 @@ uint8_t muComBase::handle(void)
 		this->_rcv_buf_cnt++;
 		
 		if((frameDesc == MUCOM_READ_REQUEST)
-			|| ((dataCnt <= 1) && (this->_rcv_buf_cnt >= dataCnt))
-			|| (this->_rcv_buf_cnt >= (dataCnt + 1)))
+			|| ((dataCnt == 1) && (this->_rcv_buf_cnt >= (dataCnt + 2)))
+			|| (this->_rcv_buf_cnt > (dataCnt + 2)))
 		{
 			//Sufficient data received. Decode it and do stuff if required
 			
@@ -157,28 +157,28 @@ uint8_t muComBase::handle(void)
 					
 				case MUCOM_READ_REQUEST:
 					//Check index, whether a variable is linked and whether the read size is not greater than the linked variable size
-					if((this->_rcv_buf[0] <= this->_linked_var_num) && (this->_linked_var[this->_rcv_buf[0]].addr != NULL) && (dataCnt <= this->_linked_var[this->_rcv_buf[0]].size))
+					if((this->_rcv_buf[0] < this->_linked_var_num) && (this->_linked_var[this->_rcv_buf[0]].addr != NULL) && (dataCnt <= this->_linked_var[this->_rcv_buf[0]].size))
 					{
-						this->writeRaw(MUCOM_READ_RESPONSE, this->_rcv_buf[0], this->_linked_var[this->_rcv_buf[0]].addr, this->_linked_var[this->_rcv_buf[0]].size);
+						this->writeRaw(MUCOM_READ_RESPONSE, this->_rcv_buf[0], this->_linked_var[this->_rcv_buf[0]].addr, dataCnt);
 					}
 					break;
 					
 				case MUCOM_WRITE_REQUEST:
 					//Check index, whether a variable is linked and whether the read size is not greater than the linked variable size
-					if((this->_rcv_buf[0] <= this->_linked_var_num) && (this->_linked_var[this->_rcv_buf[0]].addr != NULL) && (dataCnt <= this->_linked_var[this->_rcv_buf[0]].size))
+					if((this->_rcv_buf[0] < this->_linked_var_num) && (this->_linked_var[this->_rcv_buf[0]].addr != NULL) && (dataCnt <= this->_linked_var[this->_rcv_buf[0]].size))
 					{
 						for(tmp = 0; tmp < dataCnt; tmp++)
 						{
-							(this->_linked_var[this->_rcv_buf[0]].addr)[tmp] = this->_rcv_buf[tmp + 1];
+							this->_linked_var[this->_rcv_buf[0]].addr[tmp] = this->_rcv_buf[tmp + 1];
 						}
 					}
 					break;
 					
 				case MUCOM_EXECUTE_REQUEST:
 					//Check index and whether a function is linked
-					if((this->_rcv_buf[0] <= this->_linked_func_num) && (this->_linked_func[this->_rcv_buf[0]] != NULL))
+					if((this->_rcv_buf[0] < this->_linked_func_num) && (this->_linked_func[this->_rcv_buf[0]] != NULL))
 					{
-						(this->_linked_func[this->_rcv_buf[0]])(this->_rcv_buf, dataCnt);
+						(this->_linked_func[this->_rcv_buf[0]])((uint8_t*)(this->_rcv_buf + 1), dataCnt);
 					}
 					break;
 					

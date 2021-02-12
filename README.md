@@ -12,7 +12,7 @@ Variables and functions are accessed via indexes which need to be known to their
 The muCom protocol does not define master or slave ECUs. Both act as equal partners and define their capabilities but the variables and functions they link to the muCom interface.
 
 
-##### Benchmark results #####
+##### Benchmark results from v1.1 #####
 | Function | Execution time in us |
 | --- | --- |
 | writeByte()      | 35 |
@@ -33,3 +33,5 @@ Executed on an Atmega328p with a 250000kBaud serial interface in loopback mode.
 ##### Frame structure #####
 
 See muComBase.cpp for details regarding the binary structure of muCom frames.
+Each muCom frame is tuned for maximum transmission speed and efficiency resulting in a binary efficiency of 87.5% when comparing the useful transmitted data (frame type, payload byte count and target variable ID are considered useful) to the overall frame length.
+The muCom protocol has no need for wait times for frame synchronization, allowing the serial interface to run at 100% load when streaming data as fast as possible.
