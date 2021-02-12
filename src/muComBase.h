@@ -85,6 +85,12 @@ class muComBase
 		//Internal function to get the current timestamp in ms
 		virtual uint32_t _getTimestamp(void) = 0;
 		
+		//Internal function to disable interrupts
+		virtual void _disableInterrupts(void) = 0;
+		
+		//Internal function to enable interrupts
+		virtual void _enableInterrupts(void) = 0;
+		
 		
 	public:
 		/**

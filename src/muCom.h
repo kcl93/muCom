@@ -38,6 +38,11 @@ class muCom : public muComBase
 		inline uint32_t _getTimestamp(void)
 			{	return millis();	}
 		
+		inline void _disableInterrupts(void)
+			{	noInterrupts();	}
+		
+		inline void _enableInterrupts(void)
+			{	interrupts();	}
 		
 	public:
 		muCom(Stream &ser, uint8_t num_var, uint8_t num_func);

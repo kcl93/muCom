@@ -76,15 +76,20 @@ $(function() {
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">inline</span> uint32_t _getTimestamp(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            {   <span class="keywordflow">return</span> millis();    }</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classmu_com.html">muCom</a>(Stream &amp;ser, uint8_t num_var, uint8_t num_func);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif //MUCOM_H</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _disableInterrupts(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            {   noInterrupts(); }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _enableInterrupts(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            {   interrupts();   }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classmu_com.html">muCom</a>(Stream &amp;ser, uint8_t num_var, uint8_t num_func);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif //MUCOM_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassmu_com_base_html_a75d13af012310ed4d823e24471160daf"><div class="ttname"><a href="classmu_com_base.html#a75d13af012310ed4d823e24471160daf">muComBase::write</a></div><div class="ttdeci">void write(uint8_t index, uint8_t *data, uint8_t cnt)</div><div class="ttdoc">Write a data array to a remote variable.</div><div class="ttdef"><b>Definition:</b> muComBase.h:198</div></div>
+<div class="ttc" id="aclassmu_com_base_html_a75d13af012310ed4d823e24471160daf"><div class="ttname"><a href="classmu_com_base.html#a75d13af012310ed4d823e24471160daf">muComBase::write</a></div><div class="ttdeci">void write(uint8_t index, uint8_t *data, uint8_t cnt)</div><div class="ttdoc">Write a data array to a remote variable.</div><div class="ttdef"><b>Definition:</b> muComBase.h:204</div></div>
 <div class="ttc" id="aclassmu_com_base_html"><div class="ttname"><a href="classmu_com_base.html">muComBase</a></div><div class="ttdoc">Base muCom class.</div><div class="ttdef"><b>Definition:</b> muComBase.h:58</div></div>
 <div class="ttc" id="aclassmu_com_html"><div class="ttname"><a href="classmu_com.html">muCom</a></div><div class="ttdoc">File containing the main class for the muCom interface when being used for an Arduino.</div><div class="ttdef"><b>Definition:</b> muCom.h:21</div></div>
 <!-- start footer part -->
