@@ -11,6 +11,11 @@
 #include <Arduino.h>
 #include "muComBase.h"
 
+#define MUCOM_CREATE(name, serial, num_var, num_func)							\
+	struct muCom_LinkedVariable_str _##name##_var_buf[ num_var ];				\
+	muComFunc _##name##_func_buf[ num_func ];									\
+	muCom name(serial, _##name##_var_buf, num_var, _##name##_func_buf, num_func);
+
 
 /**
 	\brief		Main class for the muCom interface when being used for an Arduino
@@ -45,7 +50,7 @@ class muCom : public muComBase
 			{	interrupts();	}
 		
 	public:
-		muCom(Stream &ser, uint8_t num_var, uint8_t num_func);
+		muCom(Stream &ser, struct muCom_LinkedVariable_str *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func);
 };
 
 

@@ -1,5 +1,4 @@
 #include "muComBase.h"
-#include <stdlib.h>
 #include <string.h>
 
 /*
@@ -45,29 +44,25 @@ Byte	Bit(s)	Function
 
 
 
-muComBase::muComBase(uint8_t num_var, uint8_t num_func)
+muComBase::muComBase(struct muCom_LinkedVariable_str *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func)
 {
+	int8_t i;
+	
 	//Reset receive statemachine
 	this->_rcv_buf_cnt = 0;
 	
-	//Reserve space for linked variables
+	//Link buffer for linked variables
 	this->_linked_var_num = num_var;
-	this->_linked_var = (muCom_LinkedVariable_str*)calloc(num_var, sizeof(struct muCom_LinkedVariable_str));
+	this->_linked_var = var_buf;
+	memset(var_buf, 0, num_var * sizeof(struct muCom_LinkedVariable_str));
 	
-	//Reserve space for linked functions
+	//Link buffer for linked functions
 	this->_linked_func_num = num_func;
-	this->_linked_func = (muComFunc*)calloc(num_func, sizeof(muComFunc));
+	this->_linked_func = func_buf;
+	memset(func_buf, 0, num_func * sizeof(muComFunc));
 	
 	//Setup default timeout
 	this->_timeout = MUCOM_DEFAULT_TIMEOUT;
-}
-
-
-
-muComBase::~muComBase(void)
-{
-	free(this->_linked_var);
-	free(this->_linked_func);
 }
 
 

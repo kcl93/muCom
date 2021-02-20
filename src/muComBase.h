@@ -94,16 +94,12 @@ class muComBase
 	public:
 		/**
 			\brief		Constructor of the base class
+			\param[in]	var_buf		Fixed buffer for linked variables
 			\param[in]	num_var		Max. number of variables to be linked
+			\param[in]	func_buf	Fixed buffer for linked functions
 			\param[in]	num_func	Max. number of functions to be linked
 		*/
-		muComBase(uint8_t num_var, uint8_t num_func);
-		
-		
-		/**
-			\brief	Destructor of the base class
-		*/
-		~muComBase(void);
+		muComBase(struct muCom_LinkedVariable_str *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func);
 		
 		
 		/**

@@ -8,6 +8,7 @@
 
 muCom	KEYWORD1
 muComBase	KEYWORD1
+MUCOM_CREATE	KEYWORD1
 
 ###############################################
 # Functions (KEYWORD2)
