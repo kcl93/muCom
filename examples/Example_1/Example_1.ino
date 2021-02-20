@@ -6,7 +6,7 @@ void setLED(uint8_t *data, uint8_t cnt);
 
 
 //Create muCom interface
-muCom Device(Serial, 2, 1);
+MUCOM_CREATE(Device, Serial, 2, 1);
 
 
 //Global variables
