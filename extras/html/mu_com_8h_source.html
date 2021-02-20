@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">muCom
-   &#160;<span id="projectnumber">1.3</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">The reliable, fast and easy way to exchange binary data via UART</div>
   </td>
@@ -55,43 +55,49 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;muComBase.h&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classmu_com.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmu_com.html">muCom</a> : <span class="keyword">public</span> <a class="code" href="classmu_com_base.html">muComBase</a></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        Stream *_ser;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _write(uint8_t* data, uint8_t cnt)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            {   this-&gt;_ser-&gt;<a class="code" href="classmu_com_base.html#a75d13af012310ed4d823e24471160daf">write</a>(data, cnt);   }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">inline</span> uint8_t _read(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            {   <span class="keywordflow">return</span> this-&gt;_ser-&gt;read();  }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">inline</span> uint8_t _available(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            {   <span class="keywordflow">return</span> this-&gt;_ser-&gt;available(); }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _flushTx(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            {   this-&gt;_ser-&gt;flush();    }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">inline</span> uint32_t _getTimestamp(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            {   <span class="keywordflow">return</span> millis();    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _disableInterrupts(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            {   noInterrupts(); }</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _enableInterrupts(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            {   interrupts();   }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classmu_com.html">muCom</a>(Stream &amp;ser, uint8_t num_var, uint8_t num_func);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif //MUCOM_H</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define MUCOM_CREATE(name, serial, num_var, num_func)                           \</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">    struct muCom_LinkedVariable_str _##name##_var_buf[ num_var ];               \</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">    muComFunc _##name##_func_buf[ num_func ];                                   \</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">    muCom name(serial, _##name##_var_buf, num_var, _##name##_func_buf, num_func);</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classmu_com.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmu_com.html">muCom</a> : <span class="keyword">public</span> <a class="code" href="classmu_com_base.html">muComBase</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        Stream *_ser;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _write(uint8_t* data, uint8_t cnt)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            {   this-&gt;_ser-&gt;<a class="code" href="classmu_com_base.html#a75d13af012310ed4d823e24471160daf">write</a>(data, cnt);   }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">inline</span> uint8_t _read(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            {   <span class="keywordflow">return</span> this-&gt;_ser-&gt;read();  }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">inline</span> uint8_t _available(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            {   <span class="keywordflow">return</span> this-&gt;_ser-&gt;available(); }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _flushTx(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            {   this-&gt;_ser-&gt;flush();    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">inline</span> uint32_t _getTimestamp(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            {   <span class="keywordflow">return</span> millis();    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _disableInterrupts(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            {   noInterrupts(); }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> _enableInterrupts(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            {   interrupts();   }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classmu_com.html">muCom</a>(Stream &amp;ser, <span class="keyword">struct</span> <a class="code" href="structmu_com___linked_variable__str.html">muCom_LinkedVariable_str</a> *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif //MUCOM_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassmu_com_base_html_a75d13af012310ed4d823e24471160daf"><div class="ttname"><a href="classmu_com_base.html#a75d13af012310ed4d823e24471160daf">muComBase::write</a></div><div class="ttdeci">void write(uint8_t index, uint8_t *data, uint8_t cnt)</div><div class="ttdoc">Write a data array to a remote variable.</div><div class="ttdef"><b>Definition:</b> muComBase.h:203</div></div>
 <div class="ttc" id="aclassmu_com_base_html"><div class="ttname"><a href="classmu_com_base.html">muComBase</a></div><div class="ttdoc">Base muCom class.</div><div class="ttdef"><b>Definition:</b> muComBase.h:57</div></div>
-<div class="ttc" id="aclassmu_com_html"><div class="ttname"><a href="classmu_com.html">muCom</a></div><div class="ttdoc">File containing the main class for the muCom interface when being used for an Arduino.</div><div class="ttdef"><b>Definition:</b> muCom.h:21</div></div>
+<div class="ttc" id="astructmu_com___linked_variable__str_html"><div class="ttname"><a href="structmu_com___linked_variable__str.html">muCom_LinkedVariable_str</a></div><div class="ttdoc">Internal structure to store references to linked variables.</div><div class="ttdef"><b>Definition:</b> muComBase.h:46</div></div>
+<div class="ttc" id="aclassmu_com_html"><div class="ttname"><a href="classmu_com.html">muCom</a></div><div class="ttdoc">Main class for the muCom interface when being used for an Arduino.</div><div class="ttdef"><b>Definition:</b> muCom.h:26</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

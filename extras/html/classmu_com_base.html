@@ -19,7 +19,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">muCom
-   &#160;<span id="projectnumber">1.3</span>
+   &#160;<span id="projectnumber">2.0</span>
    </div>
    <div id="projectbrief">The reliable, fast and easy way to exchange binary data via UART</div>
   </td>
@@ -48,7 +48,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Base <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> class.  
+<p>Base <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> class.  
  <a href="classmu_com_base.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="mu_com_base_8h_source.html">muComBase.h</a>&gt;</code></p>
@@ -58,19 +58,15 @@ Inheritance diagram for muComBase:</div>
  <div class="center">
   <img src="classmu_com_base.png" usemap="#muComBase_map" alt=""/>
   <map id="muComBase_map" name="muComBase_map">
-<area href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino." alt="muCom" shape="rect" coords="0,56,81,80"/>
+<area href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino." alt="muCom" shape="rect" coords="0,56,81,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a488fa552a277f6a43d923ae0355e6c50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a488fa552a277f6a43d923ae0355e6c50">muComBase</a> (uint8_t num_var, uint8_t num_func)</td></tr>
-<tr class="memdesc:a488fa552a277f6a43d923ae0355e6c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the base class.  <a href="classmu_com_base.html#a488fa552a277f6a43d923ae0355e6c50">More...</a><br /></td></tr>
-<tr class="separator:a488fa552a277f6a43d923ae0355e6c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe49affeda7c15397431dd41cb4c5024"><td class="memItemLeft" align="right" valign="top"><a id="abe49affeda7c15397431dd41cb4c5024"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#abe49affeda7c15397431dd41cb4c5024">~muComBase</a> (void)</td></tr>
-<tr class="memdesc:abe49affeda7c15397431dd41cb4c5024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of the base class. <br /></td></tr>
-<tr class="separator:abe49affeda7c15397431dd41cb4c5024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1346d5b90d1732449b46d2c90574b22a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a1346d5b90d1732449b46d2c90574b22a">muComBase</a> (struct <a class="el" href="structmu_com___linked_variable__str.html">muCom_LinkedVariable_str</a> *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func)</td></tr>
+<tr class="memdesc:a1346d5b90d1732449b46d2c90574b22a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of the base class.  <a href="classmu_com_base.html#a1346d5b90d1732449b46d2c90574b22a">More...</a><br /></td></tr>
+<tr class="separator:a1346d5b90d1732449b46d2c90574b22a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7c38f4294832bd95256924de93790e2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#aa7c38f4294832bd95256924de93790e2">getLastCommTime</a> (void)</td></tr>
 <tr class="memdesc:aa7c38f4294832bd95256924de93790e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get timestamp of last successful communication.  <a href="classmu_com_base.html#aa7c38f4294832bd95256924de93790e2">More...</a><br /></td></tr>
 <tr class="separator:aa7c38f4294832bd95256924de93790e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -78,13 +74,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac45b068e77004c053dd068d63a8cbebc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set timeout for read requests.  <a href="classmu_com_base.html#ac45b068e77004c053dd068d63a8cbebc">More...</a><br /></td></tr>
 <tr class="separator:ac45b068e77004c053dd068d63a8cbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b96928abd1887210d0ca85144855b1a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a5b96928abd1887210d0ca85144855b1a">handle</a> (void)</td></tr>
-<tr class="memdesc:a5b96928abd1887210d0ca85144855b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface.  <a href="classmu_com_base.html#a5b96928abd1887210d0ca85144855b1a">More...</a><br /></td></tr>
+<tr class="memdesc:a5b96928abd1887210d0ca85144855b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface.  <a href="classmu_com_base.html#a5b96928abd1887210d0ca85144855b1a">More...</a><br /></td></tr>
 <tr class="separator:a5b96928abd1887210d0ca85144855b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa45020f42262138c1cd514b47022b914"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#aa45020f42262138c1cd514b47022b914">linkFunction</a> (uint8_t index, muComFunc function)</td></tr>
-<tr class="memdesc:aa45020f42262138c1cd514b47022b914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Link function to the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface.  <a href="classmu_com_base.html#aa45020f42262138c1cd514b47022b914">More...</a><br /></td></tr>
+<tr class="memdesc:aa45020f42262138c1cd514b47022b914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Link function to the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface.  <a href="classmu_com_base.html#aa45020f42262138c1cd514b47022b914">More...</a><br /></td></tr>
 <tr class="separator:aa45020f42262138c1cd514b47022b914"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6e6ae34b395cb9ad33276b35f8cbfaa"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#ab6e6ae34b395cb9ad33276b35f8cbfaa">linkVariable</a> (uint8_t index, uint8_t *var, uint8_t size)</td></tr>
-<tr class="memdesc:ab6e6ae34b395cb9ad33276b35f8cbfaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Link a variable or a buffer to the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface.  <a href="classmu_com_base.html#ab6e6ae34b395cb9ad33276b35f8cbfaa">More...</a><br /></td></tr>
+<tr class="memdesc:ab6e6ae34b395cb9ad33276b35f8cbfaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Link a variable or a buffer to the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface.  <a href="classmu_com_base.html#ab6e6ae34b395cb9ad33276b35f8cbfaa">More...</a><br /></td></tr>
 <tr class="separator:ab6e6ae34b395cb9ad33276b35f8cbfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20f271df5ca30f301e01e82b710cd328"><td class="memItemLeft" align="right" valign="top"><a id="a20f271df5ca30f301e01e82b710cd328"></a>
 int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>linkVariable</b> (uint8_t index, uint8_t *var)</td></tr>
@@ -113,6 +109,9 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>linkVariable</b> (u
 <tr class="memitem:a0b675df7ca9044741c9888c665a8b021"><td class="memItemLeft" align="right" valign="top"><a id="a0b675df7ca9044741c9888c665a8b021"></a>
 int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>linkVariable</b> (uint8_t index, float *var)</td></tr>
 <tr class="separator:a0b675df7ca9044741c9888c665a8b021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15bfe46f5b6c9da2dbf0c1548511243e"><td class="memItemLeft" align="right" valign="top"><a id="a15bfe46f5b6c9da2dbf0c1548511243e"></a>
+int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>linkVariable</b> (uint8_t index, double *var)</td></tr>
+<tr class="separator:a15bfe46f5b6c9da2dbf0c1548511243e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2341dbb0508ed18c810a0246ba416788"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a2341dbb0508ed18c810a0246ba416788">invokeFunction</a> (uint8_t index, uint8_t *data, uint8_t cnt)</td></tr>
 <tr class="memdesc:a2341dbb0508ed18c810a0246ba416788"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoke a function at the communication partner.  <a href="classmu_com_base.html#a2341dbb0508ed18c810a0246ba416788">More...</a><br /></td></tr>
 <tr class="separator:a2341dbb0508ed18c810a0246ba416788"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +136,9 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>linkVariable</b> (u
 <tr class="memitem:ab14dbeece77e70c0efcc9c3edbaf1d7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#ab14dbeece77e70c0efcc9c3edbaf1d7e">writeFloat</a> (uint8_t index, float data)</td></tr>
 <tr class="memdesc:ab14dbeece77e70c0efcc9c3edbaf1d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a float to the communication partner.  <a href="classmu_com_base.html#ab14dbeece77e70c0efcc9c3edbaf1d7e">More...</a><br /></td></tr>
 <tr class="separator:ab14dbeece77e70c0efcc9c3edbaf1d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08c2ac93ec787d28ff2632f472936d2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a08c2ac93ec787d28ff2632f472936d2a">writeDouble</a> (uint8_t index, double data)</td></tr>
+<tr class="memdesc:a08c2ac93ec787d28ff2632f472936d2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a double to the communication partner (not available on AVR microcontrollers)  <a href="classmu_com_base.html#a08c2ac93ec787d28ff2632f472936d2a">More...</a><br /></td></tr>
+<tr class="separator:a08c2ac93ec787d28ff2632f472936d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fe3da0ca1756be4aa09aaf00f08e0b3"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a1fe3da0ca1756be4aa09aaf00f08e0b3">read</a> (uint8_t index, uint8_t *data, uint8_t cnt)</td></tr>
 <tr class="memdesc:a1fe3da0ca1756be4aa09aaf00f08e0b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data from the communication partner.  <a href="classmu_com_base.html#a1fe3da0ca1756be4aa09aaf00f08e0b3">More...</a><br /></td></tr>
 <tr class="separator:a1fe3da0ca1756be4aa09aaf00f08e0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,6 +169,9 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
 <tr class="memitem:ae977678a5b6a51c0269f615791565bb2"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#ae977678a5b6a51c0269f615791565bb2">readFloat</a> (uint8_t index, float *data)</td></tr>
 <tr class="memdesc:ae977678a5b6a51c0269f615791565bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a float from the communication partner.  <a href="classmu_com_base.html#ae977678a5b6a51c0269f615791565bb2">More...</a><br /></td></tr>
 <tr class="separator:ae977678a5b6a51c0269f615791565bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab09df45f4b3003582089e8f51e3ca587"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#ab09df45f4b3003582089e8f51e3ca587">readDouble</a> (uint8_t index, double *data)</td></tr>
+<tr class="memdesc:ab09df45f4b3003582089e8f51e3ca587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a double from the communication partner (not available on AVR microcontrollers)  <a href="classmu_com_base.html#ab09df45f4b3003582089e8f51e3ca587">More...</a><br /></td></tr>
+<tr class="separator:ab09df45f4b3003582089e8f51e3ca587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5e826327f94992ae26831e7ca9bcaeb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#aa5e826327f94992ae26831e7ca9bcaeb">readByte</a> (uint8_t index)</td></tr>
 <tr class="memdesc:aa5e826327f94992ae26831e7ca9bcaeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a byte from the communication partner.  <a href="classmu_com_base.html#aa5e826327f94992ae26831e7ca9bcaeb">More...</a><br /></td></tr>
 <tr class="separator:aa5e826327f94992ae26831e7ca9bcaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,13 +187,16 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
 <tr class="memitem:ae11edde9e5687da57c9b5b4dad7c5e09"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#ae11edde9e5687da57c9b5b4dad7c5e09">readFloat</a> (uint8_t index)</td></tr>
 <tr class="memdesc:ae11edde9e5687da57c9b5b4dad7c5e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a float from the communication partner.  <a href="classmu_com_base.html#ae11edde9e5687da57c9b5b4dad7c5e09">More...</a><br /></td></tr>
 <tr class="separator:ae11edde9e5687da57c9b5b4dad7c5e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31d77f75a0b61ed49eb64ed9738c841c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmu_com_base.html#a31d77f75a0b61ed49eb64ed9738c841c">readDouble</a> (uint8_t index)</td></tr>
+<tr class="memdesc:a31d77f75a0b61ed49eb64ed9738c841c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a float from the communication partner.  <a href="classmu_com_base.html#a31d77f75a0b61ed49eb64ed9738c841c">More...</a><br /></td></tr>
+<tr class="separator:a31d77f75a0b61ed49eb64ed9738c841c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Base <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> class. </p>
-<p>This class implements the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> protocol itself and relies on being inherited in order to implement the actual serial interface. </p>
+<div class="textblock"><p>Base <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> class. </p>
+<p>This class implements the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> protocol itself and relies on being inherited in order to implement the actual serial interface. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a488fa552a277f6a43d923ae0355e6c50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a488fa552a277f6a43d923ae0355e6c50">&#9670;&nbsp;</a></span>muComBase()</h2>
+<a id="a1346d5b90d1732449b46d2c90574b22a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1346d5b90d1732449b46d2c90574b22a">&#9670;&nbsp;</a></span>muComBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -196,8 +204,20 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
         <tr>
           <td class="memname">muComBase::muComBase </td>
           <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structmu_com___linked_variable__str.html">muCom_LinkedVariable_str</a> *&#160;</td>
+          <td class="paramname"><em>var_buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>num_var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">muComFunc *&#160;</td>
+          <td class="paramname"><em>func_buf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -216,7 +236,9 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
 <p>Constructor of the base class. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">var_buf</td><td>Fixed buffer for linked variables </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">num_var</td><td>Max. number of variables to be linked </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">func_buf</td><td>Fixed buffer for linked functions </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">num_func</td><td>Max. number of functions to be linked </td></tr>
   </table>
   </dd>
@@ -270,8 +292,8 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
       </table>
 </div><div class="memdoc">
 
-<p>Handle the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface. </p>
-<p>This function handles the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface and decodes the received data. It should be executed as often as possible and will handle writing to and reading from linked variables as well as executing requested functions. This function is also used during reading data from the communication partner. </p><dl class="section return"><dt>Returns</dt><dd>1 = answer from a read request was received, else 0 </dd></dl>
+<p>Handle the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface. </p>
+<p>This function handles the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface and decodes the received data. It should be executed as often as possible and will handle writing to and reading from linked variables as well as executing requested functions. This function is also used during reading data from the communication partner. </p><dl class="section return"><dt>Returns</dt><dd>1 = answer from a read request was received, else 0 </dd></dl>
 
 </div>
 </div>
@@ -387,7 +409,7 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
       </table>
 </div><div class="memdoc">
 
-<p>Link function to the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface. </p>
+<p>Link function to the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index used to invoke this functions </td></tr>
@@ -430,7 +452,7 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
       </table>
 </div><div class="memdoc">
 
-<p>Link a variable or a buffer to the <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> interface. </p>
+<p>Link a variable or a buffer to the <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> interface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index used to access the variable/buffer </td></tr>
@@ -557,7 +579,81 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
+
+</div>
+</div>
+<a id="a31d77f75a0b61ed49eb64ed9738c841c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31d77f75a0b61ed49eb64ed9738c841c">&#9670;&nbsp;</a></span>readDouble() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double muComBase::readDouble </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read a float from the communication partner. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of the remote variable to be read </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Float read from the communication partner. <br  />
+-1 in case of errors </dd></dl>
+
+</div>
+</div>
+<a id="ab09df45f4b3003582089e8f51e3ca587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab09df45f4b3003582089e8f51e3ca587">&#9670;&nbsp;</a></span>readDouble() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t muComBase::readDouble </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read a double from the communication partner (not available on AVR microcontrollers) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of the remote variable to be read </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Pointer to the variable where the read data should be stored </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
 
 </div>
 </div>
@@ -631,7 +727,7 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
 
 </div>
 </div>
@@ -705,7 +801,7 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
 
 </div>
 </div>
@@ -779,7 +875,7 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
 
 </div>
 </div>
@@ -853,7 +949,7 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="File containing the main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>See <a class="el" href="classmu_com.html" title="Main class for the muCom interface when being used for an Arduino.">muCom</a> error codes (0 = OK, &lt;0 = Error) </dd></dl>
 
 </div>
 </div>
@@ -974,6 +1070,51 @@ int8_t&#160;</td><td class="memItemRight" valign="bottom"><b>readLongLong</b> (u
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of the remote variable to be written to </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Byte to be written to the communication partner </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a08c2ac93ec787d28ff2632f472936d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08c2ac93ec787d28ff2632f472936d2a">&#9670;&nbsp;</a></span>writeDouble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void muComBase::writeDouble </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write a double to the communication partner (not available on AVR microcontrollers) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>Index of the remote variable to be written to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Float to be written to the communication partner </td></tr>
   </table>
   </dd>
 </dl>
