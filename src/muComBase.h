@@ -174,7 +174,11 @@ class muComBase
 		
 		inline int8_t linkVariable(uint8_t index, float *var)
 			{	return this->linkVariable(index, (uint8_t*)var, sizeof(float));	}
-		
+			
+		#ifndef __AVR__
+		inline int8_t linkVariable(uint8_t index, double *var)
+			{	return this->linkVariable(index, (uint8_t*)var, sizeof(double));	}
+		#endif
 		
 		/**
 			\brief		Invoke a function at the communication partner
@@ -243,6 +247,17 @@ class muComBase
 		inline void writeFloat(uint8_t index, float data)
 			{	this->write(index, (uint8_t*)&data, sizeof(float));	}
 		
+		#ifndef __AVR__
+		
+		/**
+			\brief		Write a double to the communication partner (not available on AVR microcontrollers)
+			\param[in]	index	Index of the remote variable to be written to
+			\param[in]	data	Float to be written to the communication partner
+		*/
+		inline void writeDouble(uint8_t index, double data)
+			{	this->write(index, (uint8_t*)&data, sizeof(double));	}
+			
+		#endif
 
 		/**
 			\brief		Read data from the communication partner
@@ -309,6 +324,19 @@ class muComBase
 		inline int8_t readFloat(uint8_t index, float *data)
 			{	return this->read(index, (uint8_t*)data, sizeof(float));	}
 		
+		#ifndef __AVR__
+		
+		/**
+			\brief		Read a double from the communication partner (not available on AVR microcontrollers)
+			\param[in]	index	Index of the remote variable to be read
+			\param[in]	data	Pointer to the variable where the read data should be stored
+			\return		See muCom error codes (0 = OK, <0 = Error)
+		*/
+		inline int8_t readDouble(uint8_t index, double *data)
+			{	return this->read(index, (uint8_t*)data, sizeof(float));	}
+			
+		#endif
+		
 		/**
 			\brief		Read a byte from the communication partner
 			\param[in]	index	Index of the remote variable to be read
@@ -348,6 +376,18 @@ class muComBase
 						<br>-1 in case of errors
 		*/
 		float readFloat(uint8_t index);
+		
+		#ifndef __AVR__
+		
+		/**
+			\brief		Read a float from the communication partner
+			\param[in]	index	Index of the remote variable to be read
+			\return		Float read from the communication partner.
+						<br>-1 in case of errors
+		*/
+		double readDouble(uint8_t index);
+		
+		#endif
 };
 
 

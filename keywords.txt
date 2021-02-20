@@ -25,12 +25,14 @@ writeShort	KEYWORD2
 writeLong	KEYWORD2
 writeLongLong	KEYWORD2
 writeFloat	KEYWORD2
+writeDouble	KEYWORD2
 read	KEYWORD2
 readByte	KEYWORD2
 readShort	KEYWORD2
 readLong	KEYWORD2
 readLongLong	KEYWORD2
 readFloat	KEYWORD2
+readDouble	KEYWORD2
 
 
 ####################### END ############################

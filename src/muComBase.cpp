@@ -374,3 +374,18 @@ float muComBase::readFloat(uint8_t index)
 	return data;
 }
 
+
+#ifndef __AVR__
+
+double muComBase::readDouble(uint8_t index)
+{
+	double data;
+	if(this->read(index, (uint8_t*)&data, sizeof(float)) != MUCOM_OK)
+	{
+		return -1.0;
+	}
+	return data;
+}
+
+#endif
+
