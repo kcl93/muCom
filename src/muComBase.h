@@ -12,8 +12,9 @@
 //Required includes
 #include <stdint.h>
 
-#pragma GCC optimize ("O2") //Roughly 4% more speed for 2% more flash usage compared to default "Os"
-
+#ifdef __AVR__
+	#pragma GCC optimize ("O2") //Roughly 4% more speed for 2% more flash usage compared to default "Os"
+#endif
 
 //Defines for the return values of the muCom interface functions
 #define MUCOM_OK			0	//!< OK. No error.
@@ -171,10 +172,8 @@ class muComBase
 		inline int8_t linkVariable(uint8_t index, float *var)
 			{	return this->linkVariable(index, (uint8_t*)var, sizeof(float));	}
 			
-		#ifndef __AVR__
 		inline int8_t linkVariable(uint8_t index, double *var)
 			{	return this->linkVariable(index, (uint8_t*)var, sizeof(double));	}
-		#endif
 		
 		/**
 			\brief		Invoke a function at the communication partner
@@ -243,8 +242,6 @@ class muComBase
 		inline void writeFloat(uint8_t index, float data)
 			{	this->write(index, (uint8_t*)&data, sizeof(float));	}
 		
-		#ifndef __AVR__
-		
 		/**
 			\brief		Write a double to the communication partner (not available on AVR microcontrollers)
 			\param[in]	index	Index of the remote variable to be written to
@@ -253,8 +250,6 @@ class muComBase
 		inline void writeDouble(uint8_t index, double data)
 			{	this->write(index, (uint8_t*)&data, sizeof(double));	}
 			
-		#endif
-
 		/**
 			\brief		Read data from the communication partner
 			\param[in]	index	Index of the remote variable to be read
@@ -320,8 +315,6 @@ class muComBase
 		inline int8_t readFloat(uint8_t index, float *data)
 			{	return this->read(index, (uint8_t*)data, sizeof(float));	}
 		
-		#ifndef __AVR__
-		
 		/**
 			\brief		Read a double from the communication partner (not available on AVR microcontrollers)
 			\param[in]	index	Index of the remote variable to be read
@@ -331,8 +324,6 @@ class muComBase
 		inline int8_t readDouble(uint8_t index, double *data)
 			{	return this->read(index, (uint8_t*)data, sizeof(float));	}
 			
-		#endif
-		
 		/**
 			\brief		Read a byte from the communication partner
 			\param[in]	index	Index of the remote variable to be read
@@ -373,8 +364,6 @@ class muComBase
 		*/
 		float readFloat(uint8_t index);
 		
-		#ifndef __AVR__
-		
 		/**
 			\brief		Read a float from the communication partner
 			\param[in]	index	Index of the remote variable to be read
@@ -382,8 +371,6 @@ class muComBase
 						<br>-1 in case of errors
 		*/
 		double readDouble(uint8_t index);
-		
-		#endif
 };
 
 

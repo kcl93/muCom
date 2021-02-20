@@ -370,7 +370,6 @@ float muComBase::readFloat(uint8_t index)
 }
 
 
-#ifndef __AVR__
 
 double muComBase::readDouble(uint8_t index)
 {
@@ -381,6 +380,4 @@ double muComBase::readDouble(uint8_t index)
 	}
 	return data;
 }
-
-#endif
 
