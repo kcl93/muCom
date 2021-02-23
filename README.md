@@ -12,20 +12,22 @@ Variables and functions are accessed via indexes which need to be known to their
 The muCom protocol does not define master or slave ECUs. Both act as equal partners and define their capabilities but the variables and functions they link to the muCom interface.
 
 
-##### Benchmark results from v1.1 #####
+##### Benchmark results from v2.0 #####
 | Function | Execution time in us |
 | --- | --- |
-| writeByte()      | 35 |
-| writeShort()     | 55 |
-| writeLong()      | 92 |
-| writeLongLong()  | 156 |
-| writeFloat()     | 93 |
-| readByte()       | 255 |
-| readShort()      | 340 |
-| readLong()       | 458 |
-| readLongLong()   | 701 |
-| readFloat()      | 456 |
-| invokeFunction() | 40 |
+| writeByte()      | 42 |
+| writeShort()     | 62 |
+| writeLong()      | 99 |
+| writeLongLong()  | 164 |
+| writeFloat()     | 100 |
+| writeDouble()    | 100 |
+| readByte()       | 307 |
+| readShort()      | 411 |
+| readLong()       | 527 |
+| readLongLong()   | 767 |
+| readFloat()      | 527 |
+| readDouble()     | 527 |
+| invokeFunction() | 42 |
 
 Executed on an Atmega328p with a 250000kBaud serial interface in loopback mode.
 
