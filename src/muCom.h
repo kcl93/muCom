@@ -26,7 +26,11 @@
 class muCom : public muComBase
 {
 	private:
-		Stream *_ser;
+		#ifdef __AVR__
+			Stream *_ser;
+		#else
+			UARTClass *_ser;
+		#endif
 		
 		inline void _write(uint8_t* data, uint8_t cnt)
 			{	this->_ser->write(data, cnt);	}
@@ -36,6 +40,9 @@ class muCom : public muComBase
 		
 		inline uint8_t _available(void)
 			{	return this->_ser->available();	}
+			
+		inline uint8_t _availableTxBuffer(void)
+			{	return this->_ser->availableForWrite();	}
 		
 		inline void _flushTx(void)
 			{	this->_ser->flush();	}
@@ -50,7 +57,14 @@ class muCom : public muComBase
 			{	interrupts();	}
 		
 	public:
-		muCom(Stream &ser, struct muCom_LinkedVariable_str *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func);
+		
+		#ifdef __AVR__
+			muCom(Stream &ser, struct muCom_LinkedVariable_str *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func) : muComBase(var_buf, num_var, func_buf, num_func)
+				{	this->_ser = &ser;	}
+		#else
+			muCom(UARTClass &ser, struct muCom_LinkedVariable_str *var_buf, uint8_t num_var, muComFunc *func_buf, uint8_t num_func) : muComBase(var_buf, num_var, func_buf, num_func)
+				{	this->_ser = &ser;	}
+		#endif
 };
 
 

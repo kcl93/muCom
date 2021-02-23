@@ -16,6 +16,10 @@
 	#pragma GCC optimize ("O2") //Roughly 4% more speed for 2% more flash usage compared to default "Os"
 #endif
 
+//Optional define for making muCom safe for being executed from different sources (e.g. loop() and a timer interrupt in parallel)
+//Deactivate for improved performance and slightly redused flash usage at own risk
+//#define MUCOM_DEACTIVATE_THREADLOCK
+
 //Defines for the return values of the muCom interface functions
 #define MUCOM_OK			0	//!< OK. No error.
 #define MUCOM_ERR			-1	//!< Misc. error!
@@ -78,6 +82,9 @@ class muComBase
 		
 		//Internal function to check for available data from the actual HW
 		virtual uint8_t _available(void) = 0;
+		
+		//Internal function to check how many bytes are free in the serial buffer
+		virtual uint8_t _availableTxBuffer(void) = 0;
 		
 		//Internal function to wait until all written bytes are acutally transmitted
 		virtual void _flushTx(void) = 0;

@@ -252,7 +252,27 @@ void muComBase::writeRaw(uint8_t frameDesc, uint8_t index, uint8_t *data, uint8_
 		byte_pos--;
 	}
 	
+	#ifndef MUCOM_DEACTIVATE_THREADLOCK
+		//Wait for the serial buffer to be sufficiently empty or a timeout occurs
+		if(this->_availableTxBuffer() < (2 * sizeof(this->_rcv_buf)))
+		{
+			int16_t time_start = this->_getTimestamp();
+			while(this->_availableTxBuffer() < (2 * sizeof(this->_rcv_buf))) //2x the frame buffer should be sufficient to not encounter collisions
+			{
+				if(((int16_t)this->_getTimestamp() - time_start) >= _timeout)
+				{
+					return; //Timeout
+				}
+			}
+		}
+		this->_disableInterrupts();
+	#endif
+	
 	this->_write(buf, payload_pos + 1); //Send write variable request to slave
+	
+	#ifndef MUCOM_DEACTIVATE_THREADLOCK
+		this->_enableInterrupts();
+	#endif
 }
 
 
@@ -274,7 +294,27 @@ int8_t muComBase::read(uint8_t index, uint8_t *data, uint8_t size)
 	//Flush receive buffer
 	this->handle();
 	
+	#ifndef MUCOM_DEACTIVATE_THREADLOCK
+		//Wait for the serial buffer to be sufficiently empty or a timeout occurs
+		if(this->_availableTxBuffer() < (2 * sizeof(this->_rcv_buf)))
+		{
+			time_start = this->_getTimestamp();
+			while(this->_availableTxBuffer() < (2 * sizeof(this->_rcv_buf))) //2x the frame buffer should be sufficient to not encounter collisions
+			{
+				if(((int16_t)this->_getTimestamp() - time_start) >= _timeout)
+				{
+					return MUCOM_ERR_TIMEOUT; //Timeout
+				}
+			}
+		}
+		this->_disableInterrupts();
+	#endif
+	
 	this->_write(buf, 2); //Send read variable request to slave
+	
+	#ifndef MUCOM_DEACTIVATE_THREADLOCK
+		this->_enableInterrupts();
+	#endif
 	
 	this->_flushTx(); //Wait for all bytes to be transmitted
 	
