@@ -20,6 +20,10 @@
 //Deactivate for improved performance and slightly redused flash usage at own risk
 //#define MUCOM_DEACTIVATE_THREADLOCK
 
+//Optional define to remove support for discovery of linked variables and functions
+//Deactivating this functionality can be used in a closed system after debugging to save flash and RAM
+//#define MUCOM_DEACTIVATE_DISCOVERY
+
 //Defines for the return values of the muCom interface functions
 #define MUCOM_OK			0	//!< OK. No error.
 #define MUCOM_ERR			-1	//!< Misc. error!
@@ -40,6 +44,25 @@
 
 
 /**
+	\brief	Standard variable constants that can be linked via MUCOM
+*/
+enum muCom_LinkedVariableType : uint8_t
+{
+	MUCOM_INT8	 = 0,
+	MUCOM_INT16	 = 1,
+	MUCOM_INT32	 = 2,
+	MUCOM_INT64	 = 3,
+	MUCOM_UINT8	 = 4,
+	MUCOM_UINT16 = 5,
+	MUCOM_UINT32 = 6,
+	MUCOM_UINT64 = 7,
+	MUCOM_FLOAT	 = 8,
+	MUCOM_DOUBLE = 9,
+	MUCOM_ARRAY	 = 10
+};
+
+
+/**
 	\brief	Function prototype for functions that can be invoked by the muCom interface
 */
 typedef void (*muComFunc)(uint8_t *data, uint8_t cnt);
@@ -52,6 +75,9 @@ struct muCom_LinkedVariable_str
 {
 	uint8_t* addr;
 	uint8_t size;
+	#ifndef MUCOM_DEACTIVATE_DISCOVERY
+		muCom_LinkedVariableType type;
+	#endif
 };
 
 
@@ -97,6 +123,10 @@ class muComBase
 		
 		//Internal function to enable interrupts
 		virtual void _enableInterrupts(void) = 0;
+		
+		#ifndef MUCOM_DEACTIVATE_DISCOVERY
+			int8_t _linkVariable(uint8_t index, uint8_t *var, uint8_t size, muCom_LinkedVariableType type);
+		#endif
 		
 		
 	public:
@@ -150,37 +180,72 @@ class muComBase
 			\param[in]	size	Size of the variable/buffer in bytes (only neccessary when linking buffers)
 			\return		MUCOM_OK if all is alright
 		*/
-		int8_t linkVariable(uint8_t index, uint8_t *var, uint8_t size);
-		
-		inline int8_t linkVariable(uint8_t index, uint8_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint8_t));	}
+		#ifndef MUCOM_DEACTIVATE_DISCOVERY
+			inline int8_t linkVariable(uint8_t index, uint8_t *var, uint8_t size)
+				{	return this->_linkVariable(index, var, size, MUCOM_ARRAY);	}
 			
-		inline int8_t linkVariable(uint8_t index, int8_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int8_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, uint16_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint16_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, int16_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int16_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, uint32_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint32_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, int32_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int32_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, uint64_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint64_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, int64_t *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(int64_t));	}
-		
-		inline int8_t linkVariable(uint8_t index, float *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(float));	}
+			inline int8_t linkVariable(uint8_t index, uint8_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(uint8_t), MUCOM_UINT8);	}
+				
+			inline int8_t linkVariable(uint8_t index, int8_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(int8_t), MUCOM_INT8);	}
 			
-		inline int8_t linkVariable(uint8_t index, double *var)
-			{	return this->linkVariable(index, (uint8_t*)var, sizeof(double));	}
+			inline int8_t linkVariable(uint8_t index, uint16_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(uint16_t), MUCOM_UINT16);	}
+			
+			inline int8_t linkVariable(uint8_t index, int16_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(int16_t), MUCOM_INT16);	}
+			
+			inline int8_t linkVariable(uint8_t index, uint32_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(uint32_t), MUCOM_UINT32);	}
+			
+			inline int8_t linkVariable(uint8_t index, int32_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(int32_t), MUCOM_INT32);	}
+			
+			inline int8_t linkVariable(uint8_t index, uint64_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(uint64_t), MUCOM_UINT64);	}
+			
+			inline int8_t linkVariable(uint8_t index, int64_t *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(int64_t), MUCOM_INT64);	}
+			
+			inline int8_t linkVariable(uint8_t index, float *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(float), MUCOM_FLOAT);	}
+				
+			inline int8_t linkVariable(uint8_t index, double *var)
+				{	return this->_linkVariable(index, (uint8_t*)var, sizeof(double), MUCOM_DOUBLE);	}
+		#else
+			int8_t linkVariable(uint8_t index, uint8_t *var, uint8_t size)
+			
+			inline int8_t linkVariable(uint8_t index, uint8_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint8_t));	}
+				
+			inline int8_t linkVariable(uint8_t index, int8_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(int8_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, uint16_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint16_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, int16_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(int16_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, uint32_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint32_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, int32_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(int32_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, uint64_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(uint64_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, int64_t *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(int64_t));	}
+			
+			inline int8_t linkVariable(uint8_t index, float *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(float));	}
+				
+			inline int8_t linkVariable(uint8_t index, double *var)
+				{	return this->linkVariable(index, (uint8_t*)var, sizeof(double));	}
+		#endif
 		
 		/**
 			\brief		Invoke a function at the communication partner

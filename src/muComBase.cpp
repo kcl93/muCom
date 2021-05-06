@@ -205,7 +205,11 @@ int8_t muComBase::linkFunction(uint8_t index, muComFunc function)
 
 
 
+#ifndef MUCOM_DEACTIVATE_DISCOVERY
+int8_t muComBase::_linkVariable(uint8_t index, uint8_t *var, uint8_t size, muCom_LinkedVariableType type)
+#else
 int8_t muComBase::linkVariable(uint8_t index, uint8_t *var, uint8_t size)
+#endif
 {
 	if(index >= this->_linked_var_num)
 	{
@@ -214,6 +218,9 @@ int8_t muComBase::linkVariable(uint8_t index, uint8_t *var, uint8_t size)
 	
 	this->_linked_var[index].addr = var;
 	this->_linked_var[index].size = size;
+	#ifndef MUCOM_DEACTIVATE_DISCOVERY
+		this->_linked_var[index].type = type;
+	#endif
 	
 	return MUCOM_OK;
 }
